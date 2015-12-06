@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" class="full">
+<head>
+<meta charset="UTF-8">
+<title>Model View Controller</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+</head>
+<body>
+<button onclick='Controller()'>Push Me</button>
+<div id ='display'></div>
+
+<script>
+var count = 0;
+var model =[
+            "white",
+            "black",
+            "azul",
+            "silver"
+            ];
+    
+var Controller  = function(){
+    var snake = model[count];
+    count++;
+    View(snake);
+};
+    var View = function(snake){
+        console.log(snake);
+    document.getElementById('display').innerHTML = snake;
+};
+    
+
+</script>
+</body>
+</html>
