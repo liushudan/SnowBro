@@ -24,12 +24,12 @@
 }
 /*----------------------------Picture Background-------------------------*/
 .full {
-    background: url("/Images/background1.jpg") repeat-x center center fixed;
+    background: url("/Images/background1.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-position: 0px 0px;
+
 }
 /*----------------------------Current Points-------------------------*/
 #points {
