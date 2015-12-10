@@ -6,7 +6,7 @@
                res.redirect('index.html');
     });
 
-    server.listen(process.env.PORT || 8080, process.env.IP || 'localhost', function(){
+    server.listen(process.env.PORT /*8080,*/, process.env.IP /*|| 'localhost'*/, function(){
        console.log("server is online"); 
         
     });
