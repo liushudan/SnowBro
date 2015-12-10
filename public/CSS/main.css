@@ -1,0 +1,185 @@
+
+/*----------------------------Snowman Animation wobble-------------------------*/
+@keyframes swing {
+    20% {
+        -webkit-transform: rotate3d(0, 0, 1, 15deg);
+        transform: rotate3d(0, 0, 1, 15deg);
+    }
+    40% {
+        -webkit-transform: rotate3d(0, 0, 1, -10deg);
+        transform: rotate3d(0, 0, 1, -10deg);
+    }
+    60% {
+        -webkit-transform: rotate3d(0, 0, 1, 5deg);
+        transform: rotate3d(0, 0, 1, 5deg);
+    }
+    80% {
+        -webkit-transform: rotate3d(0, 0, 1, -5deg);
+        transform: rotate3d(0, 0, 1, -5deg);
+    }
+    to {
+        -webkit-transform: rotate3d(0, 0, 1, 0deg);
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+}
+/*----------------------------Picture Background-------------------------*/
+.full {
+    background: url("/Images/background1.jpg") no-repeat;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+
+}
+#restartBox {
+    position: absolute;
+ background-color: rgba(0,0,0, .8);
+ padding: 35px;
+ color: white;
+margin:auto;
+    z-index: 1000;
+      top: 250px;
+    left: 250px;
+    border-radius: 5px;
+    
+}
+#audio{
+ z-index: 1200;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+.button1{
+ padding:10px;
+    background-color: white;
+    margin:10px;
+    border-radius: 5px;
+    color: black;
+    border: none;
+}
+/*----------------------------Current Points-------------------------*/
+#points {
+    background-color: rgba(0,0,0, .8);
+    color: aquamarine;
+    font-size: 40px;
+    text-align: center;
+    padding: 10px;
+    top: 50px;
+    right: 50px;
+     border-radius: 5px;
+    position: absolute;
+}
+/*----------------------------SnowBro Title-------------------------*/
+#title {
+    width: 500px;
+    height: 200px;
+    color: whitesmoke;
+    opacity: .5;
+    font-size: 80px;
+    font-family: monospace;
+    text-align: center;
+    padding: 5px;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+}
+/*----------------------------High Score-------------------------*/
+#high {
+    width: 200px;
+    height: 30px;
+     background-color: rgba(0,0,0, .8);
+    color: cyan;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px;
+    bottom: 20px;
+    right: 20px;
+     border-radius: 5px;
+    position: absolute;
+}
+/*----------------------------Inner Game Box-------------------------*/
+#game {
+    width:900px;
+    height: 800px;
+    background-color: rgba(250, 250, 250, .2);
+    margin: 75px auto;
+    position: relative;
+    A cursor: crosshair;
+}
+
+#base {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+}
+/*----------------------------Gold Snowflake-------------------------*/
+.goldblock {
+    width: 30px;
+    height: 30px;
+    background-image: url('/Images/goldflakes.png');
+    position: absolute;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+/*----------------------------Black Sbowflake-------------------------*/
+.blackblock {
+    width: 100px;
+    height: 100px;
+    background-image: url('/Images/blackflake.png');
+    position: absolute;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+/*----------------------------White Snowflake-------------------------*/
+.block {
+    width: 50px;
+    height: 50px;
+    background-image: url('/Images/snowflake.png');
+    position: absolute;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+
+/*----------------------------Snowflake Animation-------------------------*/
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+/*----------------------------Snowman-------------------------*/
+.snowMan {
+    width: 120px;
+    height: 120px;
+    background-image: url('/Images/snowman1.png');
+    position: absolute;
+    top: 650px;
+    left: 100px;
+    color: deeppink;
+    font-size: 20px;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-transform-origin: bottom center;
+    transform-origin: bottom center;
+    -webkit-animation-name: swing;
+    animation-name: swing;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
