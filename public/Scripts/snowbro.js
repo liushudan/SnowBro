@@ -30,12 +30,12 @@ var Block = function () {
     
     this.update = function () {
         this.y += this.speed;
-        if (snowman1.x <= 10) {
+       /* if (snowman1.x <= 10) {
             this.x += 5;
         }
         if (snowman1.x >= 800) {
             this.x -= 5;
-        }
+        }*/
     }
     /*------------------------------------------Where snowflake starts from--------------------------------------------------*/
     this.draw = function () {
@@ -51,7 +51,7 @@ var Block = function () {
     };
     
        /*------------------------------------------wheres snowflake starts generator--------------------------------------------------*/
-    this.x = Math.floor((Math.random() * 1600) + -600);
+    this.x = Math.floor((Math.random() * 900) + 0);
     this.y = 0;
        /*------------------------------------------Snowflake falling speed--------------------------------------------------*/
     this.speed = Math.floor((Math.random() * 14) + 1);
@@ -70,12 +70,12 @@ var GoldBlock = function () {
         screen is scrolling, snowflake moves in oposite direction --------------------------------------------------*/
     this.update = function () {
         this.y += this.speed;
-        if (snowman1.x <= 10) {
+        /*if (snowman1.x <= 10) {
             this.x += 7;
         }
         if (snowman1.x >= 800) {
             this.x -= 7;
-        }
+        }*/
     }
         /*------------------------------------------Where snowflake starts from--------------------------------------------------*/
     this.draw = function () {
@@ -90,7 +90,7 @@ var GoldBlock = function () {
             98 + snowman1.y > this.y);
     };
       /*------------------------------------------wheres snowflake starts generator--------------------------------------------------*/
-    this.x = Math.floor((Math.random() * 1600) + -600);
+    this.x = Math.floor((Math.random() * 900) + 0);
     this.y = 0;
        /*------------------------------------------Snowflake falling speed--------------------------------------------------*/
     this.speed = Math.floor((Math.random() * 14) + 1);
@@ -109,12 +109,12 @@ var BlackBlock = function () {
         screen is scrolling, snowflake moves in oposite direction --------------------------------------------------*/
     this.update = function () {
         this.y += this.speed;
-        if (snowman1.x <= 10) {
+       /* if (snowman1.x <= 10) {
             this.x += 5;
         }
         if (snowman1.x >= 800) {
             this.x -= 5;
-        }
+        }*/
     };
         /*------------------------------------------Where snowflake starts from--------------------------------------------------*/
     this.draw = function () {
@@ -129,7 +129,7 @@ var BlackBlock = function () {
             98 + snowman1.y > this.y);
     };
        /*------------------------------------------wheres snowflake starts generator--------------------------------------------------*/
-    this.x = Math.floor((Math.random() * 1600) + -600);
+    this.x = Math.floor((Math.random() * 900) + 0);
     this.y = 0;
        /*------------------------------------------Snowflake falling speed--------------------------------------------------*/
     this.speed = Math.floor((Math.random() * 14) + 1);
@@ -252,7 +252,7 @@ var SnowMan = function () {
     };
         /*------------------------------------------Where snowman starts from--------------------------------------------------*/
     this.x = 250;
-    this.y = 450;
+    this.y = 800;
     this.element = this.createElement();
 };
 
@@ -266,7 +266,7 @@ var pane = $('#game'),
     box = $('.snowMan'),
     w = pane.width() - box.width(),
     d = {},
-    x = 12;
+    x = 14;
 
 function newv(v, a, c) {
     var n = parseInt(v, 10) - (d[a] ? x : 0) + (d[c] ? x : 0);
@@ -285,9 +285,9 @@ setInterval(function () {
         left: function (i, v) {
             return newv(v, 37, 39);
         },
-        top: function (i, v) {
+        /*top: function (i, v) {
             return newv(v, 38, 40);
-        }
+        }*/
     });
 }, 20);
 

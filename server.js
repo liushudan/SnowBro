@@ -2,11 +2,11 @@
     
     server.use(express.static('public'));
     
-    server.get('/', fuction(req,res){
+    server.get('/', function(req,res){
                res.redirect('index.html');
     });
 
-    server.listen(process.env.PORT, process.env.IP, function(){
+    server.listen(process.env.PORT /*|| 8080*/, process.env.IP /*|| 'localhost'*/, function(){
        console.log("server is online"); 
         
     });
