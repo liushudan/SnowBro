@@ -23,15 +23,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 </head>
 
-<body class="full">
+<body class="img-responsive full">
 <!--innerGame-->
     <div id="game">
 <audio id="audio"controls autoplay> >
   <source src="media/theSun.mp3" type="audio/mpeg" >
 Your browser does not support the audio element.
 </audio>
+        <!--Welcome Box-->
+        <div id="welcomeBox">
+            <center>
+            <h1>Welcome To SnowBro</h1><hr/>
+            <h5>Collect the white and gold snowflakes!</h5>
+            <h5>Dodge the black snowflakes!</h5>
+            <h4>Press <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"> </span> to fire snowballs</h4>
+            <h4>Press <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"> </span> to move left</h4>
+            <h4>Press <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span> to move right</h4><hr/>
+            <h4>You have three lives, have fun!</h4>
+            <button id="button3" onClick="StartGame()">START</button>
+                </center>
+        </div>
         <!--current points-->
-        <div id="points"></div>
+        <div id="points">0</div>
         <!--restrat / continue-->
         <div id="restartBox">
         </div>

@@ -8,6 +8,7 @@ var snowman1 = {
 };
 var points = 0;
 var lives= 3;
+var snowballs = [];
 var blocks = [];
 var goldblocks = [];
 var blackblocks = [];
@@ -18,9 +19,46 @@ var posright = 0;
 var pointsArray = [];
 var fox = document.getElementsByClassName('full')[0];
 
+var StartGame = function(){
+    $('#welcomeBox').hide();
+    //Update the game and draw the screen 30 times per second!
+    setInterval(tick, Math.floor(1000 / 30));
+};
+
 $('#restartBox').hide();
 
 document.getElementById('high').innerHTML = 'Current High Score, ' + localStorage.getItem("highscore");
+
+/*------------------------------------------Snowball class--------------------------------------------------*/
+
+var Snowball = function () {
+    this.createElement = function () {
+        var div = document.createElement('div');
+        div.className = "snowball";
+        return div;
+    };
+        /*------------------------------------------if snowman is moving on left or right edge and 
+        screen is scrolling, snowflake moves in oposite direction --------------------------------------------------*/
+    
+    this.update = function () {
+        this.y -= this.speed;
+    }
+    /*------------------------------------------Where snowflake starts from--------------------------------------------------*/
+    this.draw = function () {
+        this.element.style.top = this.y + "px";
+        this.element.style.left = this.x + "px";
+    };
+
+       /*------------------------------------------wheres snowflake starts generator--------------------------------------------------*/
+    this.x = (snowman1.x + 55);
+    this.y = (snowman1.y -40);
+       /*------------------------------------------Snowflake falling speed--------------------------------------------------*/
+    this.speed = 20;
+    this.element = this.createElement();
+};
+
+
+
 
 /*------------------------------------------Snowfalke class--------------------------------------------------*/
 var Block = function () {
@@ -132,6 +170,16 @@ var BlackBlock = function () {
             snowman1.y < this.y + 100 &&
             98 + snowman1.y > this.y);
     };
+    /*------------------------------------------is coliding with snowball??--------------------------------------------------*/
+        this.isCollidingSnowball = function () {
+            for(var l in snowballs){
+                if((snowballs[l].x < this.x + 100 &&
+            snowballs[l].x + 12 > this.x &&
+            snowballs[l].y < this.y + 100 &&
+            12+ snowballs[l].y > this.y)){
+                return true };
+            }
+    };
        /*------------------------------------------wheres snowflake starts generator--------------------------------------------------*/
     this.x = Math.floor((Math.random() * 900) + 0);
     this.y = 0;
@@ -144,7 +192,10 @@ var BlackBlock = function () {
 /*------------------------------------------Update GameState--------------------------------------------------*/
 
 var tick = function () {
+    
+
     getPosition();
+    //getPositionSnowballs();
     frame++;
     
     /*------------------------------------------how often/ at what interval to create snowflakes--------------------------------------------------*/
@@ -173,6 +224,12 @@ var tick = function () {
     for (var z in blackblocks) {
         blackblocks[z].update();
         blackblocks[z].draw();
+        
+          if (blackblocks[z].isCollidingSnowball()) {
+            game.removeChild(blackblocks[z].element);
+            blackblocks.splice(z, 1);
+          }
+
         if (blackblocks[z].isCollidingsnowman1()) {
                 $('.snowMan').css('font-size','40px');
                 $('.snowMan').html('POW!');
@@ -185,12 +242,12 @@ var tick = function () {
             blackblocks.splice(z, 1);
             if(lives == 1){
                 $('#restartBox').show();
-                $('#restartBox').html('<center><h2>You Loose!<br/> You have 0 lives left<br/>Final Score | ' + points + '<h2/><button onClick="Restart()" class="button1">Restart</button></center>')
+                $('#restartBox').html('<center><h2>You Lose!<br/> You have 0 lives left<br/>Final Score | ' + points + '<h2/><button onClick="Restart()" class="button2">Restart</button></center>')
             }else{
                 lives--;
                 $('#restartBox').show();
                 $('.snowMan').css('font-size','20px');
-                $('#restartBox').html('<center><h2>You Loose!<br/>You have ' + lives + ' lives left<h2/><button class="button1" onClick="Restart()">Restart</button><button onClick="Continue()" class="button1">Continue</button></center>')
+                $('#restartBox').html('<center><h2>You Lose!<br/>You have ' + lives + ' lives left<h2/><button class="button2" onClick="Restart()">Restart</button><button onClick="Continue()" class="button1">Continue</button></center>')
             }
         }
         if (blackblocks[z].y >= 700) {
@@ -198,6 +255,27 @@ var tick = function () {
             blackblocks.splice(z, 1);
         }
     }
+    
+        /*------------------------------------------on collision of snowball and blackflakes, and collision of snowball and top--------------------------------------------------*/
+    for (var g in goldblocks) {
+        goldblocks[g].update();
+        goldblocks[g].draw();
+        if (goldblocks[g].isCollidingsnowman1()) {
+            game.removeChild(goldblocks[g].element);
+            goldblocks.splice(g, 1);
+            points += 500;
+            document.getElementById('points').innerHTML = points;
+              $('.snowMan').html('+500');
+            setTimeout(function(){
+                $('.snowMan').html('');
+            }, 500);
+        }
+        if (goldblocks[g].y >= 700) {
+            game.removeChild(goldblocks[g].element);
+            goldblocks.splice(g, 1);
+        }
+    }
+    
 
     /*------------------------------------------on collision of snowman and goldflake, and collision of goldflake and ground--------------------------------------------------*/
     for (var g in goldblocks) {
@@ -239,12 +317,32 @@ var tick = function () {
             blocks.splice(b, 1);
         }
     }
+    
+        /*------------------------------------------Snowball!!--------------------------------------------------*/
+    
+        for (var m in snowballs) {
+        snowballs[m].update();
+        snowballs[m].draw();
+       // if (goldblocks[g].y >= 700) {
+         //   game.removeChild(goldblocks[g].element);
+           // goldblocks.splice(g, 1);
+        }
+        
+    
+    
 /*------------------------------------------if currnt points is higher than high score, set new high score and save to local storage--------------------------------------------------*/
     if (points > localStorage.getItem("highscore")) {
         localStorage.setItem("highscore", points);
         document.getElementById('high').innerHTML = 'Current High Score, ' + localStorage.getItem("highscore");
     }
 }
+/*------------------------------------------create snowball--------------------------------------------------*/
+function CreateSnowball() {
+    console.log("hiii!");
+    var snowball = new Snowball();
+    game.appendChild(snowball.element);
+    snowballs.push(snowball);
+};
 /*------------------------------------------create white snowflake--------------------------------------------------*/
 function CreateShit() {
     var block = new Block();
@@ -263,9 +361,6 @@ function CreateBlack() {
     game.appendChild(blackblock.element);
     blackblocks.push(blackblock);
 };
-
-//Update the game and draw the screen 30 times per second!
-setInterval(tick, Math.floor(1000 / 30));
 
 
 /*------------------------------------------Restart--------------------------------------------------*/
@@ -332,9 +427,38 @@ setInterval(function () {
     });
 }, 20);
 
+
+    $(window).keyup(function(e){
+    if(e.which == 38){
+        console.log(e)
+    CreateSnowball();
+    }
+    });
+
+
+
+
+
 /*------------------------------------------Get current position of snowman--------------------------------------------------*/
 
+/*function getPositionSnowballs() {
+    for( var x in snowballs){
+    var myElement = document.getElementsByClassName("snowMan")[x];
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while (myElement) {
+        xPosition += (myElement.offsetLeft);
+        yPosition += (myElement.offsetTop);
+        myElement = myElement.offsetParent;
+    }
+    snowballs[x].x = (xPosition - game.offsetLeft);
+    snowballs[x].y = (yPosition - game.offsetTop);
+}
+}*/
+
 function getPosition() {
+    
     var myElement = document.getElementsByClassName("snowMan")[0];
     var xPosition = 0;
     var yPosition = 0;
