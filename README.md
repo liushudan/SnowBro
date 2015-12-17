@@ -2,7 +2,7 @@
 
 http://snowbro.herokuapp.com/
 
-https://www.youtube.com/edit?o=U&video_id=jjeeKA-IqsQ
+https://www.youtube.com/watch?v=jjeeKA-IqsQ
 
 Snowman Game, catch the snowflakes, dodge the evil ones. 
 
